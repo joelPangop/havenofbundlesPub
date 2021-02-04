@@ -1,0 +1,17 @@
+{
+  "name": "havenofbundlespub",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "joelpangop <joelpangopgmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

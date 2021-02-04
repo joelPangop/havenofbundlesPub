@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title id="title">JolieFleur Hair - Coming Soon</title>
+    <meta name="description" content="JolieFleur Hair - Coming Soon"/>
+    <meta name="keywords" content="JolieFleur Hair - Coming Soon"/>
+    <meta name="author" content="JolieFleur Hair"/>
+
+    <link rel="shortcut icon" href="img/favico.ico">
+    <link rel="icon" href="img/favico.ico" type="image/x-icon">
+
+    <!--Fonts - changed to Source Code Pro-->
+    <link href='https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700' rel='stylesheet' type='text/css'>
+
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="css/jquery.countdown.css"/>
+    <link rel="stylesheet" type="text/css" href="css/animate.css"/>
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css"/>
+    <link rel="stylesheet" type="text/css" href="css/component2.css"/>
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/inputtext.css"/>
+    <link rel="stylesheet" type="text/css" href="css/slider.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+
+<body data-ng-app="contactApp">
+<!--Preloader-->
+<div class="preloader-it">
+    <div class="la-anim-1"></div>
+</div>
+<!--/Preloader-->
+
+<!--Container-->
+<div class="pad-zero">
+
+    <!--Splitlayout -->
+    <div id="splitlayout" class="splitlayout reset-layout">
+
+        <!--Intro-->
+        <div class="intro">
+
+            <!--Left Content Intro-->
+            <div class="side side-left" id="leftSideId" style="background-color:#171717;">
+
+                <div class="col-lg-8 col-md-9 col-sm-9 col-xs-9 align-center content-wrap">
+
+                    <!--Logo-->
+                    <div class="logo align-center text-left"><img src="img/logo2.png" alt="logo">
+                    </div>
+                    <!--/Logo-->
+
+                    <!--main content-->
+                    <div class="main">
+
+                        <!--Content with Typing Intro-->
+                        <section id="home" class="section active">
+                            <div class="preloader"></div>
+                            <div class="align-center text-left">
+                                <span class="small-hr animated fadeInLeft" data-animation="fadeInLeft"
+                                      data-out-animation="fadeOutLeft" data-out-animation-delay="200"></span>
+                                <p style="color: #ab924d" class="animated fadeInLeft" data-animation="fadeInLeft"
+                                   data-out-animation="fadeOutLeft" data-out-animation-delay="300">We are busy working
+                                    on something awesome.</p>
+                                <div class="type-wrap text-left">
+                                    <h1 class="animated fadeInLeft" data-animation="fadeInLeft" style="color: #ab924d"
+                                        data-out-animation="fadeOutLeft" data-out-animation-delay="900"><span
+                                            id="typed"></span></h1>
+                                </div>
+
+                                <div class="notify-btn main-menu">
+                                    <a href="#contact" class="btn btn-default animated fadeInLeft"
+                                       style="background-color: #ab924d"
+                                       data-hover="Notify me" data-animation="fadeInLeft" data-animation-delay="1000"
+                                       data-out-animation="fadeInLeft" data-out-animation-delay="600"
+                                       data-toggle="modal" data-target="#notify-my"><span
+                                            class="button-label text-left">Subscribe</span><span
+                                            class="arrow-wrap"><span class="arrow"></span></span></a>
+                                </div>
+                            </div>
+                        </section>
+                        <!--/Content with Typing Intro-->
+
+                        <!--Notify Form-->
+                        <section id="contact" class="section text-left">
+                            <div class="preloader"></div>
+                            <div class="main-menu">
+                                <a class="close-notify black" href="#home" data-animation="fadeInDown"
+                                   data-animation-delay="900" data-out-animation="fadeOutUp"
+                                   data-out-animation-delay="100">
+                                    <div class="call-to-action">
+                                        <i class="fa fa-times fa-2x"></i>
+                                        <span class="top"></span>
+                                        <span class="right"></span>
+                                        <span class="bottom"></span>
+                                        <span class="left"></span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!--CONTENT CHANGED & <br> ADDED-->
+                            <div class="notify-wrap">
+                                <h3 class="wellcome-text" data-animation="fadeInLeft" data-animation-delay="900"
+                                    data-out-animation="fadeOutLeft" data-out-animation-delay="100"
+                                    data-ng-bind="notify || 'hello..'">Hello..</h3>
+                                <form id="notifyMe" class="contact-form"
+                                      action="https://joliefleurhair.com/comingsoon/success.php" method="post">
+                                    <div class="input-wrap" data-animation="fadeInLeft" data-animation-delay="100"
+                                         data-out-animation="fadeOutLeft" data-out-animation-delay="900">
+                                        <input data-ng-model="firstname"
+                                               class="col-lg-10  align-center form-control input input__field input__field--hoshi notify-input-box"
+                                               name="firstname" placeholder="First Name" type="text">
+                                        <input data-ng-model="lastname"
+                                               class="col-lg-10  align-center form-control input input__field input__field--hoshi notify-input-box"
+                                               name="lastname" placeholder="Last Name" type="text">
+                                        <input data-ng-model="notify"
+                                               class="col-lg-10  align-center form-control input input__field input__field--hoshi notify-input-box"
+                                               name="email" placeholder="email id" type="email">
+                                        <label class="input__label input__label--hoshi input__label--hoshi-color-1"></label>
+                                    </div>
+                                    <div class="align-center text-left" style="padding-top: 20px">
+                                        <div class="container">
+                                            <button type="submit" data-hover="Send"
+                                                    class="btn btn-default progress-button btn-submit item2"
+                                                    data-animation="fadeInUp" data-animation-delay="900"
+                                                    data-out-animation="fadeOutUp" data-out-animation-delay="1300">
+                                                <span><span class="arrow-wrap"><span class="arrow"></span></span></span>
+                                            </button>&nbsp;
+                                            <div class="main-menu item1">
+                                                <a href="#list"
+                                                   class="notify-btn btn btn-default animated fadeInLeft item3"
+                                                   data-hover="Notify me" data-animation="fadeInLeft"
+                                                   data-animation-delay="1000" data-out-animation="fadeInLeft"
+                                                   data-out-animation-delay="600" data-toggle="modal"
+                                                   data-target="#notify-my"><span
+                                                        class="button-label text-left">List</span><span
+                                                        class="arrow-wrap"><span class="arrow"></span></span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                        <section id="list" class="section text-left">
+                            <div class="preloader"></div>
+                            <div class="main-menu">
+                                <a class="close-notify black" href="#home" data-animation="fadeInDown"
+                                   data-animation-delay="900" data-out-animation="fadeOutUp"
+                                   data-out-animation-delay="100">
+                                    <div class="call-to-action">
+                                        <i class="fa fa-times fa-2x"></i>
+                                        <span class="top"></span>
+                                        <span class="right"></span>
+                                        <span class="bottom"></span>
+                                        <span class="left"></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <table ng-controller="MailController" class="table">
+                                <thead>
+                                <tr>
+                                    <th style="color: #FFFFFF;">First Name</th>
+                                    <th style="color: #FFFFFF;">Last Name</th>
+                                    <th style="color: #FFFFFF;">Email</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="user in users">
+                                    <td><label style="color: #FFFFFF;">{{user.firstname}}</label></td>
+                                    <td><label style="color: #FFFFFF;">{{user.lastname}}</label></td>
+                                    <td><label style="color: #FFFFFF;">{{user.email}}</label></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                        <!--/Notify Form-->
+
+                        <div class="copyright">
+                            <ul class="social-icons">
+                                <li>
+                                    <a href="https://www.facebook.com/JolieFleurHair" target="_blank"
+                                       title="Go to our Facebook" class="social-icon">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://twitter.com/JoliefleurHair" target="_blank"
+                                       title="Go to our Twitter" class="social-icon">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.youtube.com/channel/UCq0Ltx3JbABe8A4yjiGMPbA?view_as=subscriber"
+                                       target="_blank" title="Go to our Youtube" class="social-icon">
+                                        <i class="fa fa-youtube"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.instagram.com/joliefleurhair/" target="_blank"
+                                       title="Go to our Instagram" class="social-icon">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <p>Haven Of Bundles © 2021</p>
+                        </div>
+                    </div>
+                    <!--/main content-->
+
+                </div>
+            </div>
+            <!--/Left Content Intro-->
+
+            <!--Right Content Intro-->
+            <div class="side side-right">
+                <div class=""
+                     style="background: radial-gradient(at left top, rgb(229, 79, 114), rgb(5, 110, 215));"></div>
+                <div class="background"></div>
+                <!--slider image-->
+                <ul class="cb-slideshow">
+                    <li><span>Image 01</span></li>
+                    <li><span>Image 02</span></li>
+                    <li><span>Image 03</span></li>
+                    <li><span>Image 04</span></li>
+                    <li><span>Image 05</span></li>
+                    <li><span>Image 06</span></li>
+                </ul>
+                <!--/slider image-->
+
+
+                <div class="counter-content page">
+                    <div class="col-lg-8 col-md-9 col-sm-9 col-xs-9 align-center text-left">
+                        <p class="tagline">Enter your email for a chance to win a custom luxury wig and many more items!<br/>
+                            <u>Giveaway rules:</u></p>
+                        <ol>
+                            <li>Subscribe to the email list</li>
+                            <li>Follow our Instagram page</li>
+                            <li>Follow our Facebook page</li>
+                            <li>Tag 3 friends under one of our posts & that’s it!</li>
+                        </ol>
+                        <p>The more you tag, the higher your chances of winning. Winner will be announced on Launch Day!
+                            Stay Tuned!</p>
+                        <!--Counter-->
+
+                        <div id="countdown">
+                            <div class="row">
+                                <div class="col">
+                                    <div>
+                                        <span class="days">00 </span>
+                                    </div>
+                                    <span class="small-hr"></span>
+                                    <span class="remain-days days_text">days</span>
+                                </div>
+                                <div class="col">
+                                    <div><span class="hours">00</span></div>
+                                    <span class="small-hr"></span>
+                                    <span class="remain-days hours_text">hours</span>
+                                </div>
+                                <div class="col">
+                                    <div><span class="minutes">00 </span></div>
+                                    <span class="small-hr"></span>
+                                    <span class="remain-days minutes_text">minutes</span>
+                                </div>
+                                <div class="col">
+                                    <div><span class="seconds">00 </span></div>
+                                    <span class="small-hr"></span>
+                                    <span class="remain-days seconds_text">seconds</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--/Counter-->
+
+                    </div>
+                </div>
+                <div class="trans-overlay-dark"></div>
+            </div>
+            <!--/Right Content Intro-->
+        </div>
+        <!--/Intro-->
+    </div>
+    <!-- /Splitlayout -->
+</div>
+<!-- /Container -->
+
+<!-- Scripts -->
+<script src="app/jquery-1.11.3.min.js"></script>
+<script src="app/angular.min.js"></script>
+<script src="app/modernizr.custom.js"></script>
+<script src="app/classie.js"></script>
+<script src="app/jquery.countdown.js"></script>
+<script src="app/typed.js"></script>
+<script src="app/app.js"></script>
+<script src="app/owl.carousel.js"></script>
+<script src="app/input-text.js"></script>
+<script src="app/notifyMe.js"></script>
+<script src="app/loginMe.js"></script>
+<script src="app/jquery.placeholder.js"></script>
+<script src="app/init.js"></script>
+<script src="services/mailService.js"></script>
+<script type="text/javascript">
+    jQuery('#countdown').countdown({
+        date: '10/30/2020 17:00:00',
+        offset: +2,
+        day: 'Day',
+        days: 'Days',
+        hideOnComplete: true
+    }, function (container) {
+        alert('Done!');
+    });
+</script>
+</body>
+</html>
