@@ -20,17 +20,59 @@ module.exports = function(grunt) {
         },
         uglify: {
             dist: {
-                files: {
-                    'dist/app.js': [ 'dist/app.js' ]
-                },
+                files: [{
+                    expand: true,
+                    src: [ 'app/*.js' ],
+                    dest: 'dist/',
+                }],
                 options: {
                     mangle: false
                 }
             }
         },
+        postcss: {
+            options: {
+                processors: [
+                    // require('autoprefixer')({overrideBrowserslist: 'last 2 versions'}), // add vendor prefixes
+                    require('cssnano')() // minify the result
+                ]
+            },
+            dist: {
+                files: [
+                    {
+                        expand: true,
+                        src: 'css/*.css',
+                        dest: 'dist/'
+                    }
+                ]
+            }
+        },
+        htmlmin: {                                     // Task
+            dist: {                                      // Target
+                options: {                                 // Target options
+                    removeComments: true,
+                    collapseWhitespace: true
+                },
+                files: {                                   // Dictionary of files
+                    'dist/index.html': './index.html',     // 'destination': 'source'
+                    'dist/success.html': './success.html'
+                }
+            }
+        },
+        copy: {
+            main: {
+                files: [
+                    // includes files within path
+                    {expand: true, src: ['fonts/*'], dest: 'dist/', filter: 'isFile'},
+
+                    // includes files within path and its sub-directories
+                    {expand: true, src: ['img/**'], dest: 'dist/'},
+                ],
+            },
+        },
         clean: {
             temp: {
-                src: [ 'tmp' ]
+                src: [ 'tmp', 'dist' ]
             }
         },
         concat: {
@@ -128,8 +170,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-html2js');
+    grunt.loadNpmTasks('grunt-contrib-htmlmin');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-karma');
@@ -141,7 +186,7 @@ module.exports = function(grunt) {
         'clean:temp', 'compress:dist' ]);
     grunt.registerTask('heroku:production', 'build');
     // Default task(s).
-    grunt.registerTask('default', ['uglify']);
+    grunt.registerTask('default', ['clean:temp', 'uglify', 'postcss', 'htmlmin', 'copy']);
     // change the tasks in the list to your production tasks
     grunt.registerTask('heroku',
         ['compass:dist', 'autoprefixer', 'imagemin']);
