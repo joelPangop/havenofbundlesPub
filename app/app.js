@@ -1,14 +1,14 @@
 /** *************Angular app JS*********************/
 "use strict";
 const app = angular.module('contactApp', []);
-angular.UNSAFE_restoreLegacyJqLiteXHTMLReplacement();
 
 const devUrl= "http://localhost:4000";
 const prodUrl= "https://havenofbundleservices.herokuapp.com";
 
-app.controller("MailController",[ "$scope", "$http", function($scope, $http) {
+app.controller("MailController",["$scope", "$http", function($scope, $http) {
 
     const token = window.localStorage['token'];
+    $scope.message = "";
 
     if (token) {
         $scope.user = JSON.parse(window.localStorage['user']);
@@ -23,7 +23,7 @@ app.controller("MailController",[ "$scope", "$http", function($scope, $http) {
     $scope.isLogged = $scope.user.type === "admin" || $scope.user.type === "superadmin"
 
     const headers = {'Content-Type': 'application/json'};
-    $http.get(prodUrl+'/users' || devUrl+ '/users', headers).then(function (response) {
+    $http.get(devUrl+ '/users', headers).then(function (response) {
         $scope.users = response.data.users;
     });
 
@@ -31,7 +31,7 @@ app.controller("MailController",[ "$scope", "$http", function($scope, $http) {
         $("#sendSpan").hide();
         $("#loadId").append('<div class="loader"></div>')
         console.log($scope.users[index]);
-        const url = prodUrl+'/mail';
+        const url = devUrl+'/mail';
         const data = {email: $scope.users[index].email};
         const headers = {'Content-Type': 'application/json'};
         $http.post(url, data, headers).then(
@@ -52,7 +52,7 @@ app.controller("MailController",[ "$scope", "$http", function($scope, $http) {
 
     $scope.loginMe = function () {
         console.log($scope.user);
-        const url = prodUrl+'/login';
+        const url = devUrl+'/login';
         const headers = {'Content-Type': 'application/json'};
         const user = {email: $scope.email, password: $scope.password}
         $http({
@@ -102,6 +102,7 @@ app.controller("MailController",[ "$scope", "$http", function($scope, $http) {
             msgError503: "Oops. Looks like something went wrong. Please try again later.",
             msgErrorValidation: "This email address looks fake or invalid. Please enter a real email address.",
             msgErrorFormat: "Your e-mail address is incorrect.",
+            msgErrorExists: "Your e-mail address is already saved, stay tuned",
             msgSuccess: "Congrats! You are in list.",
         });
 
@@ -110,24 +111,13 @@ app.controller("MailController",[ "$scope", "$http", function($scope, $http) {
         const firstnameInput = $(this).find("input[name=firstname]");
         const lastnameInput = $(this).find("input[name=lastname]");
         const btnDiv = $(this).find("div[name=btnDiv]");
-
+        $scope.message = "";
         const action = $(this).attr("action");
         const note = $(this).find(".note");
-        const message = $("<div class='col-lg-12 align-center' style='color: #ab924d' id='message'></div>").appendTo($(this));
         const icon = $("<i></i>");
         const iconProcess = "fa fa-spinner fa-spin";
         const iconSuccess = "fa fa-check-circle";
         const iconError = "fa fa-exclamation-circle";
-
-        $(this).click(() => {
-            $("#modalId").find(".pop-inner").find(".resultMsg").empty();
-            $(".pop-outer").fadeOut("slow");
-        });
-
-        $(".close").click(function () {
-            $("#modalId").find(".pop-inner").find(".resultMsg").empty();
-            $(".pop-outer").fadeOut("slow");
-        });
 
         // Test if the value of input is actually an email
         const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -137,11 +127,10 @@ app.controller("MailController",[ "$scope", "$http", function($scope, $http) {
             icon.removeClass();
             icon.addClass(iconProcess);
             $(this).removeClass("error success");
-            message.text("");
             note.show();
             $http({
                 method: 'POST',
-                url: prodUrl +'/user',
+                url: devUrl +'/user',
                 data: {email: $scope.notify, firstname: $scope.firstname, lastname: $scope.lastname},
                 error: function (data) {
                     console.log(data);
@@ -156,15 +145,13 @@ app.controller("MailController",[ "$scope", "$http", function($scope, $http) {
 
                     if (response.data.status === "success") {
                         // Add success class to form
-                        $this.addClass("success");
-                        // Change the icon to success
-                        icon.removeClass();
-                        icon.addClass(iconSuccess);
-                        emailInput.val("");
-                        firstnameInput.val("");
-                        lastnameInput.val("");
-                        emailInput.trigger('input');
-                        message.text(settings.msgSuccess);
+
+                        $scope.notify = "";
+                        $scope.firstname = "";
+                        $scope.lastname = "";
+
+                        // $scope.message = settings.msgSuccess;
+
                         $("#modalId").find(".pop-inner").find(".resultMsg").append(settings.msgSuccess);
                         $(".pop-outer").fadeIn("slow");
                     } else {
@@ -174,26 +161,25 @@ app.controller("MailController",[ "$scope", "$http", function($scope, $http) {
                         icon.removeClass();
                         icon.addClass(iconError);
 
-                        if (data.type === "ValidationError") {
-                            message.text(settings.msgErrorValidation);
-                            $('input').val("");
+                        if (response.data.type === "ValidationError") {
+                            $scope.message = settings.msgErrorValidation;
+                            // $('input').val("");
+                        } else if (response.data.type === "ValidationExists") {
+                            $scope.message = settings.msgErrorExists;
                         } else {
-                            message.text(settings.msgError503);
+                            $scope.message = settings.msgError503;
                         }
                     }
                 }, function errorCallback(response) {
                     console.log(response);
                     // Add error class to form
-                    $this.addClass("error");
-                    // Change the icon to error
-                    icon.removeClass();
-                    icon.addClass(iconError);
-
-                    if (data.type === "ValidationError") {
-                        message.text(settings.msgErrorValidation);
-                        $('input').val("");
+                    if (response.data.type === "ValidationError") {
+                        $scope.message = settings.msgErrorValidation;
+                        // $('input').val("");
+                    } else if (response.data.type === "ValidationExists") {
+                        $scope.message = settings.msgErrorExists;
                     } else {
-                        message.text(settings.msgError503);
+                        $scope.message = settings.msgError503;
                     }
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.
@@ -208,8 +194,7 @@ app.controller("MailController",[ "$scope", "$http", function($scope, $http) {
             icon.removeClass();
             icon.addClass(iconError);
             // Display the message
-            message.text(settings.msgErrorFormat);
+            $scope.message = settings.msgErrorFormat;
         }
     }
-
 }]);

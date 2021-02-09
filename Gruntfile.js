@@ -106,7 +106,6 @@ module.exports = function(grunt) {
                 }]
             }
         },
-
         karma: {
             options: {
                 configFile: 'config/karma.conf.js'
@@ -114,7 +113,6 @@ module.exports = function(grunt) {
             unit: {
                 singleRun: true
             },
-
             continuous: {
                 singleRun: false,
                 autoWatch: true
